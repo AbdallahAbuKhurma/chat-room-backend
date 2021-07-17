@@ -17,8 +17,12 @@ const router = require('./src/router');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
-
+const io = socketio(server, {
+  cors: {
+    origin: 'https://friendly-feynman-cbc074.netlify.app/',
+    credentials: true,
+  },
+});
 app.use(cors());
 app.use(logger);
 app.use(morgan('dev'));
